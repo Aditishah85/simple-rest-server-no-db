@@ -1,0 +1,81 @@
+<html>
+<head title="General Information">
+	<style type="text/css">
+	#data , #result{
+		width: 250px;		
+		height: 300px;
+		border: 1px solid black;
+	}
+	#data{
+		float: left;
+		margin-left: 300px;	
+	}
+	#result{		
+		margin-left: 551px;
+		margin-top: 50px;		
+		display: block;
+	}
+
+	#fm{
+		margin-left: 20px;
+		margin-top: 30px;
+
+	}
+	#fm > div{
+		display: block;
+		padding: 10px;
+	}
+	#result > div{
+		padding: 10px;	
+	}
+	#divbtn > input{
+		
+		margin: 15 310;
+
+	}
+	</style>
+	<script src="jquery-1.12.0.min.js"></script>
+</head>
+<body id="bd">
+	<div class="clearview" id="data">
+		
+			<form id="fm">
+				<div><input type="checkbox" name="fruit" value="Apple"><span>Apple</span></div>
+				<div><input type="checkbox" name="fruit" value="Mango"><span>Mango</span></div>
+				<div><input type="checkbox" name="fruit" value="Grape"><span>Grape</span></div>
+				<div><input type="checkbox" name="fruit" value="Strawberry"><span>Strawberry</span></div>
+				<div><input type="checkbox" name="fruit" value="Cherry"><span>Cherry</span></div>
+
+			</form>
+		
+	</div>
+	<div id="result">	
+	</div>
+	<div id="divbtn">
+		<input id="btnSubmit" type="submit" value="Add fruit Name">
+		<p id="demo"></p>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#data").on("click",":checkbox",function(){
+
+			if(this.checked)
+			$("#result").append("<div>" + this.value + "</div>");
+			else
+			$("#result div:contains('"+this.value+"')").remove();
+	   	});
+
+	   	$("#divbtn").on("click",":submit",function(){
+	   		var newFruitName=prompt("Please Enter Fruit Name");
+			$("#fm").append("<div><input type='checkbox' name='fruit' value="+newFruitName+"><span>"+
+					newFruitName+"</span></div>");
+	   	});
+		
+		$("#data").on("click","span",function(){			
+			$($(this).prev()).trigger("click");						
+		});
+
+	});
+	
+</script>			
+</html>
